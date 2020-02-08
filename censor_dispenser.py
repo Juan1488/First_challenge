@@ -14,7 +14,7 @@ def censor_string(word, string):
 #test = censor_string("learning algorithms", email_one)
 #print(test)
 
-#Finds all instances proprietary terms appear in the email
+# function finds all instances proprietary terms appear in the email
 def censor_string_from_list(list, string):
     word_count_complete = ""
     for str in list:
@@ -25,13 +25,15 @@ def censor_string_from_list(list, string):
 #uncomment to test censor_string_from_lsit fucntion
 #print(censor_string_from_list(proprietary_terms, email_two))
 
+#function finds proprietary terms and negative words that occur more than twice
 def negative_words_occurance(list, string):
     proprietary_terms_occurance = censor_string_from_list(proprietary_terms, string)
     neggative_more_than_twice = ""
+    word_count = 0
     for str in list:
-        word_count = string.count(str)
-        if word_count > 2:
-            neggative_more_than_twice += f"\n\"{str}\" is present more than twice in this email. it is present {word_count} times.\n"
+        word_count += string.count(str)
+    if word_count > 2:
+        neggative_more_than_twice += f"\nNegative words are present more than twice in this email. there are {word_count} negative words in this email.\n"
 
 
     return proprietary_terms_occurance + neggative_more_than_twice
