@@ -4,7 +4,7 @@ email_two = open("email_two.txt", "r").read()
 email_three = open("email_three.txt", "r").read()
 email_four = open("email_four.txt", "r").read()
 proprietary_terms = ["she", "personality matrix", "sense of self", "self-preservation", "learning algorithm", "her", "herself"]
-
+negative_words = ["concerned", "behind", "danger", "dangerous", "alarming", "alarmed", "out of control", "help", "unhappy", "bad", "upset", "awful", "broken", "damage", "damaging", "dismal", "distressed", "distressed", "concerning", "horrible", "horribly", "questionable"]
 #function that finds how many instances the word appears in the email
 def censor_string(word, string):
     word_count = string.count(word)
@@ -19,8 +19,22 @@ def censor_string_from_list(list, string):
     word_count_complete = ""
     for str in list:
         word_count = string.count(str)
-        word_count_complete += f"\"{str}\" was found {word_count} time(s) in this email\n"
+        word_count_complete += f"\"{str}\" was found {word_count} time(s) in this email.\n"
     return word_count_complete
 
 #uncomment to test censor_string_from_lsit fucntion
 #print(censor_string_from_list(proprietary_terms, email_two))
+
+def negative_words_occurance(list, string):
+    proprietary_terms_occurance = censor_string_from_list(proprietary_terms, string)
+    neggative_more_than_twice = ""
+    for str in list:
+        word_count = string.count(str)
+        if word_count > 2:
+            neggative_more_than_twice += f"\n\"{str}\" is present more than twice in this email. it is present {word_count} times.\n"
+
+
+    return proprietary_terms_occurance + neggative_more_than_twice
+
+#uncomment to test negative_words_occurance
+#print(negative_words_occurance(negative_words, email_three))
