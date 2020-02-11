@@ -31,7 +31,7 @@ def censor_string_from_list(list, string):
 #uncomment to test censor_string_from_lsit fucntion
 #print(censor_string_from_list(proprietary_terms, email_two))
 
-#function finds proprietary terms and negative words that occur more than twice
+#function finds proprietary terms and negative words that occur more than twice and censors them.
 def negative_words_occurance(list, string):
     list = sorted(list, key=len)
     list.reverse()
@@ -57,4 +57,25 @@ def negative_words_occurance(list, string):
 
 
 #uncomment to test negative_words_occurance
-#print(negative_words_occurance(negative_words, email_three))
+print(negative_words_occurance(negative_words, email_three))
+
+def censor_before_and_after(string):
+    string_new = negative_words_occurance(negative_words, string)
+    string_lst = string_new.split()
+    print(string_lst)
+    i = 0
+    while i < len(string_lst):
+        if string_lst[i][0] == "X":
+            if i == 0:
+                string_lst[i+1] = "X" * len(string_lst[i+1])
+                i += 2
+            else:
+                string_lst[i+1] = "X" * len(string_lst[i+1])
+                string_lst[i-1] = "X" * len(string_lst[i-1])
+                i += 2
+        i += 1
+    string_lst_clean_joined = " ".join(string_lst)
+    return string_lst_clean_joined
+
+
+#print(censor_before_and_after(email_four))
